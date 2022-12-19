@@ -26,9 +26,6 @@ if ($config == "") {
 }
 $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
-
-echo $configjson;
-
 $configobj = json_decode($configjson, true);
 
 $curl = curl_init();
@@ -45,11 +42,7 @@ curl_setopt_array($curl, array(
 ));
 
 $response = curl_exec($curl);
-
-echo $response;
-
 curl_close($curl);
-
 $obj = json_decode($response, true);
 
 // $nowTitle = $obj["now"]["firstLine"];
