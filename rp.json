@@ -1,10 +1,11 @@
 {
     "name": "Radio Paradise",
     "country": "US",
+    "logo": "",
     "nowURL": "https://www8.radioparadise.com/ajax_mx_nowplaying.php",
     "mappings": {
-        "nowTitle": "",
-        "nowArtist": "",
-        "nowPictURL": ""
+        "nowTitle": "title",
+        "nowArtist": "artist",
+        "nowPictURL": "cover"
     }
 }
