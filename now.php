@@ -92,9 +92,8 @@ $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 		font-size: 50%;
 	}
 	#cover {
-		height: 40vh;
+		height: 50vh;
 		width: auto;
-		max-height: 350px;
 	}
 
 	@media (max-height: 340px) {
