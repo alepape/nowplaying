@@ -62,50 +62,79 @@ $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body {background: #1c1c1c}
-h2 {
-  color: white;
-  margin-top: 20px;
-}
-body {
-  margin: 0px;
-}
-.hass-text {
-  color: rgb(220, 220, 220);
-  font-family: Roboto, Noto, sans-serif;
-  font-size: 22px;
-  letter-spacing: -0.012em;
-  /*line-height: 32px;*/
-  padding: 20px;
-  display: block;
-  margin-block: 0px;
-  font-weight: normal;
-}
+	body { 
+		font-family: Roboto, Noto, sans-serif;
+		font-size: 5vh;
+		background: #333;
+		color: #ccc;
+	}
+	#container {
+		margin: 10px;
+		text-align: center;
+		position: relative;
+	}
 
-@media screen and (max-width: 500px) {
-  img.player {
-    width: 200px;
-    float: left; 
-    margin-right: 20px;
-  }
-}
-@media screen and (min-width: 500px) {
-  img.player {
-    width: 100%;
-    /* margin-bottom: 20px; */
-  }
-  .hass-text {
-    padding-bottom: 0px;
-    padding-top: 10px;
-    font-size: 28px;
-  }
-}
+	#now_playing {
+		width: 100%;
+		margin:auto;
+		text-align:center;
+		margin-top: 20px;
+		cursor: pointer;
+		clear: left;
+	}
+	#title {
+		margin-top: 8px;
+	}
+	#artist {
+		font-size: 70%;
+	}
+	#album {
+		font-size: 50%;
+	}
+	#cover {
+		height: 40vh;
+		width: auto;
+		max-height: 350px;
+	}
+
+	@media (max-height: 340px) {
+		#cover {
+			display: none;
+		}
+		#container {
+			font-size: 200%;
+		}
+	}
+
+	#logo {
+		
+	}
+	#controls {
+		margin-top: 4vh;
+		margin-bottom: 4vh;
+		font-size: 60%;
+	}
+
+	#logo img {
+		width: 60%;
+		height: auto;
+		max-height:100px;
+	}
 </style>
 </header>
 <body>
-<a href="https://www.deezer.com/search/<?=urlencode($nowTitle." ".$nowArtist)?>" target="_blank"><img class="player" src="<?=$nowPictURL?>"/></a>
-<div>
-  <h2 class="hass-text"><b><?=$nowTitle?></b></h2>
-  <h2 class="hass-text"><?=$nowArtist?></h2>
+<div id="container">
+  <div id="logo">
+    <img src="<?=$configobj['logo']?>" align="center">
+  </div>
+  <div id="head">now playing:</div>
+  <div id="now_playing" style="display: block;">
+    <div >
+      <a href="https://www.deezer.com/search/<?=urlencode($nowTitle." ".$nowArtist)?>" target="_blank"><img src="<?=$nowPictURL?>" id="cover"></a>
+      <div id="title"><?=$nowTitle?></div>
+      <div id="artist"><?=$nowArtist?></div>
+      <!-- <div id="album">Abbey Road (1969)</div> -->
+    </div>
+  </div>
 </div>
 </body>

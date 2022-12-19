@@ -1,7 +1,7 @@
 {
     "name": "Radio Paradise",
     "country": "US",
-    "logo": "",
+    "logo": "http://www8.radioparadise.com/graphics/logo_flat_350x103.png",
     "nowURL": "https://www8.radioparadise.com/ajax_mx_nowplaying.php",
     "mappings": {
         "nowTitle": "title",
