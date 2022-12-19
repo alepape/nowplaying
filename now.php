@@ -116,7 +116,6 @@ $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 	}
 
 	#logo img {
-		width: 60%;
 		height: auto;
 		max-height:100px;
 	}
@@ -127,7 +126,6 @@ $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
   <div id="logo">
     <img src="<?=$configobj['logo']?>" align="center">
   </div>
-  <div id="head">now playing:</div>
   <div id="now_playing" style="display: block;">
     <div >
       <a href="https://www.deezer.com/search/<?=urlencode($nowTitle." ".$nowArtist)?>" target="_blank"><img src="<?=$nowPictURL?>" id="cover"></a>
