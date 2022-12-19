@@ -19,10 +19,13 @@ function arrayLocator($array, $locator) {
 }
 
 // LOGIC
+$configfile = __DIR__ .'/now.json';
+$configjson = file_get_contents($configfile);
+$configobj = json_decode($configjson, true);
 
 $config = $_GET["c"];
 if ($config == "") {
-    $config = "fip"; // default station
+    $config = $configobj['default']; // default station from file
 }
 $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
