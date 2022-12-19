@@ -1,0 +1,10 @@
+{
+    "name": "FIP",
+    "country": "FR",
+    "nowURL": "https://api.radiofrance.fr/livemeta/live/7/webrf_fip_player?preset=800x800",
+    "mappings": {
+        "nowTitle": ["now","firstLine"],
+        "nowArtist": ["now","secondLine"],
+        "nowPictURL": ["now","cover"]
+    }
+}
