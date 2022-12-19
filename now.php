@@ -116,7 +116,7 @@ $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 
 	#logo img {
 		height: auto;
-		max-height:100px;
+		max-height: 10vh;
 	}
 </style>
 </header>
