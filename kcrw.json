@@ -7,5 +7,11 @@
         "nowTitle": "title",
         "nowArtist": "artist",
         "nowPictURL": "albumImageLarge"
+    },
+    "transform": {
+        "albumImageLarge": {
+            "from": "100x100",
+            "to": "400x400"
+        }
     }
 }

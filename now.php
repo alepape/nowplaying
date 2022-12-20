@@ -48,17 +48,18 @@ $response = curl_exec($curl);
 curl_close($curl);
 $obj = json_decode($response, true);
 
-// $nowTitle = $obj["now"]["firstLine"];
-// $nowArtist = $obj["now"]["secondLine"];
-// $nowPictURL = $obj["now"]["cover"];
-
 $nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
 $nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
 $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 
-//echo $nowURL;
+// check for transforms
+if (isset($configobj['transform'])) {
+  foreach ($configobj['transform'] as $key => $value) {
+    //echo $key." from ".$value['from']." to ".$value['to'];
+    ${$key} = str_replace($value['from'], $value['to'], ${$key});
+  }
+}
 
-//header('Location: '.$nowURL);
 ?>
 <header>
 <meta http-equiv="refresh" content="30" />
