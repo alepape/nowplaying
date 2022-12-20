@@ -9,7 +9,7 @@
         "nowPictURL": "albumImageLarge"
     },
     "transform": {
-        "albumImageLarge": {
+        "nowPictURL": {
             "from": "100x100",
             "to": "400x400"
         }
