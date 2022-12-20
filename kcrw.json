@@ -1,0 +1,11 @@
+{
+    "name": "KCRW",
+    "country": "US",
+    "logo": "https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/listing-square",
+    "nowURL": "https://tracklist-api.kcrw.com/Music",
+    "mappings": {
+        "nowTitle": "title",
+        "nowArtist": "artist",
+        "nowPictURL": "albumImageLarge"
+    }
+}
