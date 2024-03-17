@@ -1,7 +1,7 @@
 {
     "name": "KCRW",
     "country": "US",
-    "logo": "https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/listing-square",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/83/KCRW_89.9FM_logo.svg/1034px-KCRW_89.9FM_logo.svg.png",
     "nowURL": "https://tracklist-api.kcrw.com/Music",
     "mappings": {
         "nowTitle": "title",
