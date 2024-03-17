@@ -51,6 +51,9 @@ $obj = json_decode($response, true);
 $nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
 $nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
 $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
+if ($nowPictURL == "") {
+	$nowPictURL = "notfound.png";
+}
 
 // check for transforms
 if (isset($configobj['transform'])) {
@@ -131,7 +134,7 @@ if (isset($configobj['transform'])) {
     <img src="<?=$configobj['logo']?>" align="center">
   </div>
   <div id="now_playing" style="display: block;">
-    <div >
+    <div >	  
       <a href="https://open.spotify.com/search/<?=urlencode($nowTitle." ".$nowArtist)?>" target="_blank"><img src="<?=$nowPictURL?>" id="cover"></a>
       <div id="title"><?=$nowTitle?></div>
       <div id="artist"><?=$nowArtist?></div>
