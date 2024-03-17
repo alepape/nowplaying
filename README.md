@@ -38,7 +38,7 @@ shows what's playing on supported radios
     "logo": "https://s3-eu-west-1.amazonaws.com/static.media.info/l/o/6/6820.1503524658.png",
     "nowURL": "https://api.radiofrance.fr/livemeta/live/7/webrf_fip_player?preset=800x800",
     "mappings": {
-        "nowTitle": "now.firstLine", // in this case, the return object has nested aatributes - just put in the path.to.the.attribute
+        "nowTitle": "now.firstLine", // in this case, the return object has nested attributes - just put in the path.to.the.attribute
         "nowArtist": "now.secondLine",
         "nowPictURL": "now.cover"
     }
