@@ -132,7 +132,7 @@ if (isset($configobj['transform'])) {
   </div>
   <div id="now_playing" style="display: block;">
     <div >
-      <a href="https://www.deezer.com/search/<?=urlencode($nowTitle." ".$nowArtist)?>" target="_blank"><img src="<?=$nowPictURL?>" id="cover"></a>
+      <a href="https://open.spotify.com/search/<?=urlencode($nowTitle." ".$nowArtist)?>" target="_blank"><img src="<?=$nowPictURL?>" id="cover"></a>
       <div id="title"><?=$nowTitle?></div>
       <div id="artist"><?=$nowArtist?></div>
       <!-- <div id="album">Abbey Road (1969)</div> -->
