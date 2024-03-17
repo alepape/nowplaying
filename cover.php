@@ -9,12 +9,12 @@
 
 $artist = $_GET["a"];
 if ($artist == "") {
-    $artist = "catie lausten"; // default artist
+    $artist = "Stevie Wonder"; // default artist
     $artist = urlencode($artist);
 }
 $track = $_GET["t"];
 if ($track == "") {
-    $track = "man, ur not my man"; // default track
+    $track = "Superstition"; // default track
     $track = urlencode($track);
 }
 
