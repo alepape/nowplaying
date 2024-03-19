@@ -94,8 +94,11 @@ $coverapi = json_decode($response, true);
 $picturl = $coverapi["images"][0]["thumbnails"]["large"]; // TODO: check if front or back
 
 //echo $picturl;
-
-$image = file_get_contents($picturl);
+if ($picturl == "") {
+  $image = file_get_contents("notfound.png");
+} else {
+  $image = file_get_contents($picturl);
+}
 
 header('Content-type: image/jpeg;');
 header("Content-Length: " . strlen($image));

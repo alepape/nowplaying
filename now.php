@@ -50,8 +50,12 @@ $obj = json_decode($response, true);
 
 $nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
 $nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
+if ($config == "tsf") { // everyting UPPER, really? TODO: same - need a flag in the JSON config
+	$nowTitle = ucwords(strtolower($nowTitle));
+	$nowArtist = ucwords(strtolower($nowArtist));
+}
 $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
-if ($config == "tsf" || $nowPictURL == "") { // their covers are shit 
+if ($config == "tsf" || $nowPictURL == "") { // their covers are shit TODO: include this as flag in JSON config
 	$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist);
 }
 // if ($nowPictURL == "") {
