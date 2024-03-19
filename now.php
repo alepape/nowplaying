@@ -1,7 +1,7 @@
 <?php
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+error_reporting(E_ERROR);
 
 // FUNCTIONS
 
@@ -51,9 +51,12 @@ $obj = json_decode($response, true);
 $nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
 $nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
 $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
-if ($nowPictURL == "") {
-	$nowPictURL = "notfound.png";
+if ($config == "tsf" || $nowPictURL == "") { // their covers are shit 
+	$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist);
 }
+// if ($nowPictURL == "") {
+// 	$nowPictURL = "notfound.png";
+// }
 
 // check for transforms
 if (isset($configobj['transform'])) {
