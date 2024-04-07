@@ -1,0 +1,13 @@
+{
+    "name": "KEXP",
+    "country": "US",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/KEXP_logo_%28black_on_orange%29.svg/1890px-KEXP_logo_%28black_on_orange%29.svg.png",
+    "nowURL": "https://api.kexp.org/v2/plays/?format=json&limit=1",
+    "mappings": {
+        "nowTitle": "song",
+        "nowArtist": "artist",
+        "nowPictURL": "image_uri"
+    },
+    "overrideCover": false,
+    "fixCase": false
+}
