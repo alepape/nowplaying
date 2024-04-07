@@ -9,5 +9,5 @@
         "nowPictURL": "result.artworkLarge"
     },
     "overrideCover": false,
-    "fixCase": false
+    "fixCase": true
 }

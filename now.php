@@ -31,7 +31,7 @@ $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
 $configobj = json_decode($configjson, true);
 
-header('ALP-config: '.$configjson); // no show??? why???
+//header('ALP-config: '.$configjson); // no show??? why???
 
 $curl = curl_init();
 
@@ -77,6 +77,7 @@ if (isset($configobj['overrideCover'])) {
 
 $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 if ($overrideCover || $nowPictURL == "") { 
+	// TODO: include album data from radio when available to find better covers...
 	$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist);
 }
 // default cover managed by cover.php
