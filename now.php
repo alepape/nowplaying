@@ -5,15 +5,28 @@ error_reporting(E_ERROR);
 
 // FUNCTIONS
 
-function arrayLocator($array, $locator) {
+function arrayLocator($array, $locator, $dictindex = 0, $dictkey = "", $dictvalue = "") {
 	$addr = explode('.', $locator);
 
 	foreach($addr as $i){
-	    if(!isset($tmp)){
+		if(!isset($tmp)){
 	        $tmp = &$array[$i];
-	    } else {
+	    } else if (isset($tmp[$i])) {
 	        $tmp = $tmp[$i];
 	    }
+	}
+	//echo gettype($tmp);
+	if (gettype($tmp) == "array") {
+		// check if using key or index
+		if ($dictkey != "") {
+			foreach($tmp as $stream) {
+				if ($stream[$dictkey] == $dictvalue) {
+					$tmp = $stream[$i];
+				}
+			}
+		} else {
+			$tmp = $tmp[$dictindex][$i];
+		}
 	}
 	return $tmp;
 }
