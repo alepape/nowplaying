@@ -7,5 +7,11 @@
         "now": "icestats.source.yp_currently_playing",
         "key": "server_name",
         "value": "Classic Vinyl HD"
+    },
+    "transform": {
+        "nowTitle": {
+            "from": " - WALMRadio.com",
+            "to": ""
+        }
     }
 }

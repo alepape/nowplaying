@@ -98,14 +98,6 @@ if (isset($configobj['mappings'])) { // normal mapping
 	}
 	// default cover managed by cover.php
 	
-	// check for string transforms
-	if (isset($configobj['transform'])) {
-	  foreach ($configobj['transform'] as $key => $value) {
-		//echo $key." from ".$value['from']." to ".$value['to'];
-		${$key} = str_replace($value['from'], $value['to'], ${$key});
-	  }
-	}
-
 } elseif (isset($configobj['icemappings'])) { // icecast mapping
 
 	$nowTitle = arrayLocator($obj, $configobj['icemappings']['now'], null, $configobj['icemappings']['key'], $configobj['icemappings']['value']);
@@ -118,6 +110,14 @@ if (isset($configobj['mappings'])) { // normal mapping
 	$nowPictURL = "notfound.png";
 }
 
+// check for string transforms
+if (isset($configobj['transform'])) {
+	foreach ($configobj['transform'] as $key => $value) {
+		//echo $key." from ".$value['from']." to ".$value['to'];
+		${$key} = str_replace($value['from'], $value['to'], ${$key});
+	}
+}
+    
 ?>
 <header>
 <meta http-equiv="refresh" content="30" />
