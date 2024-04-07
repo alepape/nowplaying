@@ -7,5 +7,7 @@
         "nowTitle": "title",
         "nowArtist": "artist",
         "nowPictURL": "thumbnail_medium"
-    }
+    },
+    "overrideCover": true,
+    "fixCase": true
 }

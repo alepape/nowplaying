@@ -50,19 +50,30 @@ $obj = json_decode($response, true);
 
 $nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
 $nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
-if ($config == "tsf") { // everyting UPPER, really? TODO: same - need a flag in the JSON config
-	$nowTitle = ucwords(strtolower($nowTitle));
-	$nowArtist = ucwords(strtolower($nowArtist));
+
+// fixCase
+if (isset($configobj['fixCase'])) {
+	if ($configobj['fixCase']) {
+		$nowTitle = ucwords(strtolower($nowTitle));
+		$nowArtist = ucwords(strtolower($nowArtist));
+	}
 }
+
+// overrideCover
+$overrideCover = false;
+if (isset($configobj['overrideCover'])) {
+	if ($configobj['overrideCover']) {
+		$overrideCover = true;
+	}
+}
+
 $nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
-if ($config == "tsf" || $nowPictURL == "") { // their covers are shit TODO: include this as flag in JSON config
+if ($overrideCover || $nowPictURL == "") { 
 	$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist);
 }
-// if ($nowPictURL == "") {
-// 	$nowPictURL = "notfound.png";
-// }
+// default cover managed by cover.php
 
-// check for transforms
+// check for string transforms
 if (isset($configobj['transform'])) {
   foreach ($configobj['transform'] as $key => $value) {
     //echo $key." from ".$value['from']." to ".$value['to'];
@@ -145,7 +156,6 @@ if (isset($configobj['transform'])) {
       <a href="https://open.spotify.com/search/<?=urlencode($nowTitle." ".$nowArtist)?>" target="_blank"><img src="<?=$nowPictURL?>" id="cover"></a>
       <div id="title"><?=$nowTitle?></div>
       <div id="artist"><?=$nowArtist?></div>
-      <!-- <div id="album">Abbey Road (1969)</div> -->
     </div>
   </div>
 </div>

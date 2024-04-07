@@ -13,5 +13,7 @@
             "from": "100x100",
             "to": "400x400"
         }
-    }
+    },
+    "overrideCover": false,
+    "fixCase": false
 }

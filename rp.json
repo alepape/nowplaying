@@ -7,5 +7,7 @@
         "nowTitle": "title",
         "nowArtist": "artist",
         "nowPictURL": "cover"
-    }
+    },
+    "overrideCover": false,
+    "fixCase": false
 }

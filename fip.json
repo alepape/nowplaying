@@ -7,5 +7,7 @@
         "nowTitle": "now.firstLine",
         "nowArtist": "now.secondLine",
         "nowPictURL": "now.cover"
-    }
+    },
+    "overrideCover": false,
+    "fixCase": false
 }
