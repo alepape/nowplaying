@@ -3,11 +3,9 @@
     "country": "US",
     "logo": "https://icecast.walmradio.com:8443/classic.jpg",
     "nowURL": "https://manager.radiosolution.fr/data/titrage/lebonmix-radio.json",
-    "mappings": {
-        "nowTitle": "result.title",
-        "nowArtist": "result.artist",
-        "nowPictURL": "result.artworkLarge"
-    },
-    "overrideCover": false,
-    "fixCase": true
+    "icemappings": {
+        "now": "icestats.source.yp_currently_playing",
+        "key": "server_name",
+        "value": "Classic Vinyl HD"
+    }
 }

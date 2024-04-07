@@ -69,38 +69,52 @@ if (isset($configobj['resultArray'])) {
 	$obj = $obj[$configobj['resultArray']][0];
 }
 
-$nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
-$nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
+if (isset($configobj['mappings'])) { // normal mapping
 
-// fixCase
-if (isset($configobj['fixCase'])) {
-	if ($configobj['fixCase']) {
-		$nowTitle = ucwords(strtolower($nowTitle));
-		$nowArtist = ucwords(strtolower($nowArtist));
+	$nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
+	$nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
+	
+	// fixCase
+	if (isset($configobj['fixCase'])) {
+		if ($configobj['fixCase']) {
+			$nowTitle = ucwords(strtolower($nowTitle));
+			$nowArtist = ucwords(strtolower($nowArtist));
+		}
 	}
-}
-
-// overrideCover
-$overrideCover = false;
-if (isset($configobj['overrideCover'])) {
-	if ($configobj['overrideCover']) {
-		$overrideCover = true;
+	
+	// overrideCover
+	$overrideCover = false;
+	if (isset($configobj['overrideCover'])) {
+		if ($configobj['overrideCover']) {
+			$overrideCover = true;
+		}
 	}
-}
+	
+	$nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
+	if ($overrideCover || $nowPictURL == "") { 
+		// TODO: include album data from radio when available to find better covers...
+		$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist);
+	}
+	// default cover managed by cover.php
+	
+	// check for string transforms
+	if (isset($configobj['transform'])) {
+	  foreach ($configobj['transform'] as $key => $value) {
+		//echo $key." from ".$value['from']." to ".$value['to'];
+		${$key} = str_replace($value['from'], $value['to'], ${$key});
+	  }
+	}
 
-$nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
-if ($overrideCover || $nowPictURL == "") { 
-	// TODO: include album data from radio when available to find better covers...
-	$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist);
-}
-// default cover managed by cover.php
+} elseif (isset($configobj['icemappings'])) { // icecast mapping
 
-// check for string transforms
-if (isset($configobj['transform'])) {
-  foreach ($configobj['transform'] as $key => $value) {
-    //echo $key." from ".$value['from']." to ".$value['to'];
-    ${$key} = str_replace($value['from'], $value['to'], ${$key});
-  }
+	$nowTitle = arrayLocator($obj, $configobj['icemappings']['now'], null, $configobj['icemappings']['key'], $configobj['icemappings']['value']);
+	$nowArtist = "";
+	$nowPictURL = "notfound.png";
+
+} else { // nothing?
+	$nowTitle = "no valid configuration found";
+	$nowArtist = "error";
+	$nowPictURL = "notfound.png";
 }
 
 ?>
