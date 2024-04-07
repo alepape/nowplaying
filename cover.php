@@ -32,6 +32,7 @@ $sessionID = $artist.$track;
 if ($_SESSION['lastrequest'] == $sessionID) {
   // I HAVE CACHE, let's use it
   $picturl = $_SESSION['lastcover'];
+  header('ALP-status: cache;');
 } else {
   // NO CACHE, let's call the APIs...
   $_SESSION['lastrequest'] = $sessionID;
@@ -103,6 +104,7 @@ if ($_SESSION['lastrequest'] == $sessionID) {
   $coverapi = json_decode($response, true);
   $picturl = $coverapi["images"][0]["thumbnails"]["large"]; // TODO: check if front or back
   $_SESSION['lastcover'] = $picturl;
+  header('ALP-status: live;');
 }
 
 //echo $picturl;
