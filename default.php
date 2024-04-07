@@ -7,9 +7,14 @@ error_reporting(E_ALL);
 
 // LOGIC
 
-$config = $_GET["c"];
+// try POST first
+$config = $_POST["name"];
 if ($config == "") {
-    $config = "fip"; // default station
+    // GET second
+    $config = $_GET["c"];
+    if ($config == "") {
+        $config = "fip"; // default station
+    }
 }
 
 $configfile = __DIR__ .'/now.json';
