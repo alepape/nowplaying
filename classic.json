@@ -2,7 +2,7 @@
     "name": "Classic Vinyl HD",
     "country": "US",
     "logo": "https://icecast.walmradio.com:8443/classic.jpg",
-    "nowURL": "https://manager.radiosolution.fr/data/titrage/lebonmix-radio.json",
+    "nowURL": "https://icecast.walmradio.com:8443/status-json.xsl",
     "icemappings": {
         "now": "icestats.source.yp_currently_playing",
         "key": "server_name",
