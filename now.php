@@ -31,7 +31,7 @@ $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
 $configobj = json_decode($configjson, true);
 
-header('ALP-config: '.$configjson);
+header('ALP-config: '.$configjson); // no show??? why???
 
 $curl = curl_init();
 
@@ -49,6 +49,7 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 curl_close($curl);
 $obj = json_decode($response, true);
+header('ALP-debug: '.$response);
 
 // result in array
 if (isset($configobj['resultArray'])) {
