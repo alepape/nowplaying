@@ -8,6 +8,7 @@
         "nowArtist": "artist",
         "nowPictURL": "image_uri"
     },
+    "resultArray": "results",
     "overrideCover": false,
     "fixCase": false
 }

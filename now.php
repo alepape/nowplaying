@@ -48,6 +48,11 @@ $response = curl_exec($curl);
 curl_close($curl);
 $obj = json_decode($response, true);
 
+// result in array
+if (isset($configobj['resultArray'])) {
+	$obj = $obj[$configobj['resultArray']][0];
+}
+
 $nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
 $nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
 
