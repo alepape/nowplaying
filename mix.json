@@ -1,0 +1,13 @@
+{
+    "name": "Le Bon Mix",
+    "country": "FR",
+    "logo": "https://static.wixstatic.com/media/8f2aad_93ae56d1764947358ca5524a248f789e~mv2.png",
+    "nowURL": "https://manager.radiosolution.fr/data/titrage/lebonmix-radio.json",
+    "mappings": {
+        "nowTitle": "title",
+        "nowArtist": "artist",
+        "nowPictURL": "artworkLarge"
+    },
+    "overrideCover": false,
+    "fixCase": false
+}
