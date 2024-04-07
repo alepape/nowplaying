@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 // LOGIC
 
 // try POST first
-$config = $_POST["name"];
+$config = $_POST["c"];
 if ($config == "") {
     // GET second
     $config = $_GET["c"];
