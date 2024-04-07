@@ -31,6 +31,8 @@ $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
 $configobj = json_decode($configjson, true);
 
+header('ALP-config: '.$configjson);
+
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
