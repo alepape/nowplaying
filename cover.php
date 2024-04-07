@@ -3,6 +3,9 @@
 //ini_set('display_startup_errors', 1);
 error_reporting(E_ERROR);
 
+// SESSION FOR CACHED COVER
+session_start();
+
 // FUNCTIONS
 function cmp($a, $b) {
   $date_a = substr($a["date"], 0, 4);
@@ -24,54 +27,24 @@ if ($track == "") {
 }
 $track = urlencode($track);
 
-// TODO: URL encode / decode check - for now, assumes encoded and pass as is
+$sessionID = $artist.$track;
 
-$curl = curl_init();
+if ($_SESSION['lastrequest'] == $sessionID) {
+  // I HAVE CACHE, let's use it
+  $picturl = $_SESSION['lastcover'];
+} else {
+  // NO CACHE, let's call the APIs...
+  $_SESSION['lastrequest'] = $sessionID;
 
-// user agent = Application name/<version> ( contact-email )
-$url = 'https://musicbrainz.org/ws/2/recording/?query=recording%3A%22'.$track.'%22%20AND%20artist%3A%22'.$artist.'%22%20AND%20status%3Aofficial%20AND%20primarytype%3Aalbum&inc=releases&fmt=json';
-
-//echo $url;
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => $url,
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'GET',
-  CURLOPT_USERAGENT => 'Home Assistant Now Playing/0.1 (https://github.com/alepape/nowplaying)'
-));
-
-$response = curl_exec($curl);
-$musicbrainz = json_decode($response, true);
-
-curl_close($curl);
-//echo $response;
-
-$releasecandidates = [];
-
-foreach ($musicbrainz["recordings"] as $recording) {
-  foreach ($recording["releases"] as $release) {
-    if ($release["date"] != "") {
-      $releasecandidates[] = $release;
-    }
-  }
-}
-//echo json_encode($releasecandidates);
-usort($releasecandidates, "cmp");
-//echo "<br/><br/>------------------------------<br/><br/>";
-//echo json_encode($releasecandidates);
-
-foreach ($releasecandidates as $candidate) {
-  $coverurl = "https://coverartarchive.org/release/".$candidate["id"];
-  //echo $release["id"]."<br/>";
   $curl = curl_init();
 
+  // user agent = Application name/<version> ( contact-email )
+  $url = 'https://musicbrainz.org/ws/2/recording/?query=recording%3A%22'.$track.'%22%20AND%20artist%3A%22'.$artist.'%22%20AND%20status%3Aofficial%20AND%20primarytype%3Aalbum&inc=releases&fmt=json';
+
+  //echo $url;
+
   curl_setopt_array($curl, array(
-    CURLOPT_URL => $coverurl,
+    CURLOPT_URL => $url,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -79,19 +52,58 @@ foreach ($releasecandidates as $candidate) {
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_USERAGENT => 'Home Assistant Now Playing/0.1 (https://github.com/alepape/nowplaying)'
   ));
 
   $response = curl_exec($curl);
-  $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-  if ($httpCode == 200) {
-    break;
+  $musicbrainz = json_decode($response, true);
+
+  curl_close($curl);
+  //echo $response;
+
+  $releasecandidates = [];
+
+  foreach ($musicbrainz["recordings"] as $recording) {
+    foreach ($recording["releases"] as $release) {
+      if ($release["date"] != "") {
+        $releasecandidates[] = $release;
+      }
+    }
+  }
+  //echo json_encode($releasecandidates);
+  usort($releasecandidates, "cmp");
+  //echo "<br/><br/>------------------------------<br/><br/>";
+  //echo json_encode($releasecandidates);
+
+  foreach ($releasecandidates as $candidate) {
+    $coverurl = "https://coverartarchive.org/release/".$candidate["id"];
+    //echo $release["id"]."<br/>";
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => $coverurl,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+    ));
+
+    $response = curl_exec($curl);
+    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    if ($httpCode == 200) {
+      break;
+    }
+
+    curl_close($curl);  
   }
 
-  curl_close($curl);  
+  $coverapi = json_decode($response, true);
+  $picturl = $coverapi["images"][0]["thumbnails"]["large"]; // TODO: check if front or back
+  $_SESSION['lastcover'] = $picturl;
 }
-
-$coverapi = json_decode($response, true);
-$picturl = $coverapi["images"][0]["thumbnails"]["large"]; // TODO: check if front or back
 
 //echo $picturl;
 if ($picturl == "") {
