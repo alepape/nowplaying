@@ -1,0 +1,13 @@
+{
+    "name": "Radio Neptune",
+    "country": "FR",
+    "logo": "http://www.radio-neptune.net/favicon.ico",
+    "nowURL": "https://public.radio.co/stations/s95a7b8d22/status",
+    "mappings": {
+        "nowTitle": "current_track.title",
+        "nowArtist": "source.collaborator.name",
+        "nowPictURL": "current_track.artwork_url_large"
+    },
+    "overrideCover": false,
+    "fixCase": false
+}
