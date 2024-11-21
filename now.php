@@ -206,7 +206,7 @@ if ($mode == "page") {
 </div>
 </body>
 
-<?
+<?php
 } else { // pict mode
 
 //echo $picturl;
