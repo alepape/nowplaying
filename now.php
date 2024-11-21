@@ -43,6 +43,12 @@ if ($config == "") {
 $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
 $configobj = json_decode($configjson, true);
+$mode = $_GET["p"];
+if ($mode == "") {
+    $mode = "page";
+} else {
+	$mode = "pict";
+}
 
 //header('ALP-config: '.$configjson); // no show??? why???
 
@@ -117,7 +123,9 @@ if (isset($configobj['transform'])) {
 		${$key} = str_replace($value['from'], $value['to'], ${$key});
 	}
 }
-    
+
+if ($mode == "page") {
+
 ?>
 <header>
 <meta http-equiv="refresh" content="30" />
@@ -197,3 +205,20 @@ if (isset($configobj['transform'])) {
   </div>
 </div>
 </body>
+
+<?
+} else { // pict mode
+
+//echo $picturl;
+if ($nowPictURL == "") {
+	$image = file_get_contents("notfound.png");
+} else {
+	$image = file_get_contents($nowPictURL);
+}
+
+header('Content-type: image/jpeg');
+header("Content-Length: " . strlen($image));
+echo $image;
+
+}
+?>
