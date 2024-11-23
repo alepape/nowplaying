@@ -164,7 +164,7 @@ if ($mode == "page") {
 	#cover {
 		height: 50vh;
 		width: auto;
-    max-height: 400px;
+    	max-height: 400px;
 	}
 
 	@media (max-height: 340px) {
@@ -176,9 +176,6 @@ if ($mode == "page") {
 		}
 	}
 
-	#logo {
-		
-	}
 	#controls {
 		margin-top: 4vh;
 		margin-bottom: 4vh;
