@@ -8,6 +8,8 @@ shows what's playing on supported radios
 - KEXP (US)
 - Le Bon Mix (FR)
 - Radio Neptune (FR)
+- TSF (FR)
+- Classic Vinyl (US)
 
 ## Notes
 

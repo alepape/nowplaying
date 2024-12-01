@@ -44,10 +44,12 @@ $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
 $configobj = json_decode($configjson, true);
 $mode = $_GET["p"];
-if ($mode == "") {
-    $mode = "page";
-} else {
+if ($mode == "true") {
 	$mode = "pict";
+} else if ($mode == "json") {
+    $mode = "json";
+} else {
+    $mode = "page";
 }
 
 //header('ALP-config: '.$configjson); // no show??? why???
@@ -204,7 +206,7 @@ if ($mode == "page") {
 </body>
 
 <?php
-} else { // pict mode
+} else if ($mode == "pict") { // pict mode
 
 //echo $picturl;
 if ($nowPictURL == "") {
@@ -217,5 +219,18 @@ header('Content-type: image/jpeg');
 header("Content-Length: " . strlen($image));
 echo $image;
 
+} else if ($mode == "json") { 
+
+	$jsonObj = [];
+	$jsonObj["title"] = $nowTitle;
+	$jsonObj["artist"] = $nowArtist;
+	$jsonObj["pict"] = $nowPictURL;
+
+	$json = json_encode($jsonObj);
+
+	header('Content-type: application/json');
+	header("Content-Length: " . strlen($json));
+	echo $json;
+	
 }
 ?>

@@ -104,6 +104,7 @@ if ($_SESSION['lastrequest'] == $sessionID) {
   $coverapi = json_decode($response, true);
   $picturl = $coverapi["images"][0]["thumbnails"]["large"]; // TODO: check if front or back
   $_SESSION['lastcover'] = $picturl;
+  // TODO: could we cache the pict itself? worth it?
   header('ALP-status: live');
 }
 
