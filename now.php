@@ -132,7 +132,20 @@ if ($mode == "page") {
 <header>
 <meta http-equiv="refresh" content="30" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "http://rpinet:8123/api/webhook/update-radio-media-jk88hlBW3PeOgtzzDMiCoA-t");
+
+xhr.send();
+</script>
 <style>
 	body { 
 		font-family: Roboto, Noto, sans-serif;
@@ -227,6 +240,15 @@ echo $image;
 	$jsonObj["pict"] = $nowPictURL;
 
 	$json = json_encode($jsonObj);
+
+	// data_template:
+	// entity_id: media_player.desk_speakers
+	// state: playing
+	// media_title: "{{ state_attr('sensor.now_playing', 'title') }}"
+	// media_artist: "{{ state_attr('sensor.now_playing', 'artist') }}"
+	// #entity_picture: http://pve-web/nowplaying/now.php?p=true&nonce={{range(1,255)|random}}
+	// entity_picture: "{{ state_attr('sensor.now_playing', 'pict') }}"
+    // action: python_script.set_state
 
 	header('Content-type: application/json');
 	header("Content-Length: " . strlen($json));
