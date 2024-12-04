@@ -147,7 +147,7 @@ if ($mode == "page") {
 		
 ?>
 <header>
-<meta http-equiv="refresh" content="30" />
+<!-- <meta http-equiv="refresh" content="30" /> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -205,6 +205,51 @@ if ($mode == "page") {
 		height: auto;
 		max-height: 15vh;
 	}
+
+	@media screen and (width: 1024px) and (height: 600px) { /* google nest hub */
+		body {
+			margin: 0px;
+		}
+		#container {
+			margin: 0px;
+			text-align: right;
+			position: relative;
+		}
+		#now_playing {
+			margin-top: 0px;
+		}
+		#cover {
+			height: 510px;
+			max-height: 510px;
+		}
+		#coverdiv {
+			float: left;
+		}
+		#infodiv {
+			float: left;
+        	display: flex;
+        	height: 510px;
+		}
+		#infobox {
+        	margin: auto;
+	        text-align: left;
+    	    padding-left: 30px;
+        	font-size: 50px;
+        	width: 484px;
+		}
+		#title {
+			margin-top: 0px;
+			color: white;
+		}
+		#artist {
+			margin-top: 20px;
+			font-size: 70%;
+		}
+		#artist::before {
+  			content: 'by: ';
+		}
+	}
+
 </style>
 </header>
 <body>
@@ -213,11 +258,15 @@ if ($mode == "page") {
     <img src="<?=$configobj['logo']?>" align="center">
   </div>
   <div id="now_playing" style="display: block;">
-    <div >	  
+    <div id="coverdiv">
       <a href="https://open.spotify.com/search/<?=urlencode($nowTitle." ".$nowArtist)?>" target="_blank"><img src="<?=$nowPictURL?>" id="cover"></a>
-      <div id="title"><?=$nowTitle?></div>
-      <div id="artist"><?=$nowArtist?></div>
     </div>
+    <div id="infodiv">
+		<div id="infobox">
+	    	<div id="title"><?=$nowTitle?></div>
+    		<div id="artist"><?=$nowArtist?></div>
+		</div>
+	</div>
   </div>
 </div>
 </body>
