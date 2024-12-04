@@ -245,15 +245,6 @@ echo $image;
 
 	$json = json_encode($jsonObj);
 
-	// data_template:
-	// entity_id: media_player.desk_speakers
-	// state: playing
-	// media_title: "{{ state_attr('sensor.now_playing', 'title') }}"
-	// media_artist: "{{ state_attr('sensor.now_playing', 'artist') }}"
-	// #entity_picture: http://pve-web/nowplaying/now.php?p=true&nonce={{range(1,255)|random}}
-	// entity_picture: "{{ state_attr('sensor.now_playing', 'pict') }}"
-    // action: python_script.set_state
-
 	header('Content-type: application/json');
 	header("Content-Length: " . strlen($json));
 	echo $json;
