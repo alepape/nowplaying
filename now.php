@@ -234,7 +234,7 @@ if ($mode == "page") {
         	margin: auto;
 	        text-align: left;
     	    padding-left: 30px;
-        	font-size: 50px;
+        	font-size: 60px;
         	width: 484px;
 		}
 		#title {
