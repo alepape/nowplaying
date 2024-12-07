@@ -1,0 +1,99 @@
+body { 
+    font-family: Roboto, Noto, sans-serif;
+    font-size: 5vh;
+    background: #333;
+    color: #ccc;
+}
+#container {
+    margin: 10px;
+    text-align: center;
+    position: relative;
+}
+
+#now_playing {
+    width: 100%;
+    margin:auto;
+    text-align:center;
+    margin-top: 20px;
+    cursor: pointer;
+    clear: left;
+}
+#title {
+    margin-top: 8px;
+}
+#artist {
+    font-size: 70%;
+}
+#album {
+    font-size: 50%;
+}
+#cover {
+    height: 50vh;
+    width: auto;
+    max-height: 400px;
+}
+
+@media (max-height: 340px) {
+    #cover {
+        display: none;
+    }
+    #container {
+        font-size: 200%;
+    }
+}
+
+#controls {
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    font-size: 60%;
+}
+
+#logo img {
+    height: auto;
+    max-height: 15vh;
+}
+
+@media screen and (width: 1024px) and (height: 600px) { /* google nest hub */
+    body {
+        margin: 0px;
+    }
+    #container {
+        margin: 0px;
+        text-align: right;
+        position: relative;
+    }
+    #now_playing {
+        margin-top: 0px;
+    }
+    #cover {
+        height: 510px;
+        max-height: 510px;
+        max-width: 510px;
+    }
+    #coverdiv {
+        float: left;
+    }
+    #infodiv {
+        float: left;
+        display: flex;
+        height: 510px;
+    }
+    #infobox {
+        margin: auto;
+        text-align: left;
+        padding-left: 30px;
+        font-size: 60px;
+        width: 484px;
+    }
+    #title {
+        margin-top: 0px;
+        color: white;
+    }
+    #artist {
+        margin-top: 20px;
+        font-size: 70%;
+    }
+    #artist::before {
+          content: 'by: ';
+    }
+}
