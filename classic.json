@@ -4,14 +4,21 @@
     "logo": "https://icecast.walmradio.com:8443/classic.jpg",
     "nowURL": "https://icecast.walmradio.com:8443/status-json.xsl",
     "icemappings": {
-        "now": "icestats.source.yp_currently_playing",
+        "now": "icestats.source.title",
         "key": "server_name",
         "value": "Classic Vinyl HD"
+    },
+    "split": {
+        "nowTitle":{
+            "after": "  By: ",
+            "target": "nowArtist"
+        }
     },
     "transform": {
         "nowTitle": {
             "from": " - WALMRadio.com",
             "to": ""
         }
-    }
+    },
+    "overrideCover": false
 }

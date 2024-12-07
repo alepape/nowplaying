@@ -82,6 +82,7 @@ if (($_SESSION['lastrequest'] == $sessionID) && $force == false) {
   //echo $response;
 
   $releasecandidates = [];
+  $releasecandidates_planb = [];
   $mb_count = 0;
 
   foreach ($musicbrainz["recordings"] as $recording) {
@@ -100,6 +101,7 @@ if (($_SESSION['lastrequest'] == $sessionID) && $force == false) {
       } // is object array - need better filter
       if (is_array($release["release-group"]["secondary-types"])) {
         if (in_array("Compilation", $release["release-group"]["secondary-types"])) {
+          $releasecandidates[] = $release;
           continue;
         }
       }
@@ -108,11 +110,13 @@ if (($_SESSION['lastrequest'] == $sessionID) && $force == false) {
   }
   header('ALP-musicbrainz-count: '.$mb_count);
   header('ALP-candidates: '.count($releasecandidates));
+  header('ALP-candidates-b: '.count($releasecandidates_planb));
 
-  //echo json_encode($releasecandidates);
-  //usort($releasecandidates, "cmp");
-  //echo "<br/><br/>------------------------------<br/><br/>";
-  //echo json_encode($releasecandidates);
+  if (count($releasecandidates) == 0) {
+    $releasecandidates = $releasecandidates_planb;
+  }
+
+  usort($releasecandidates, "cmp");
 
   foreach ($releasecandidates as $candidate) {
     $coverurl = "https://coverartarchive.org/release/".$candidate["id"];
