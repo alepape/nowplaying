@@ -4,32 +4,7 @@
 error_reporting(E_ERROR);
 
 // FUNCTIONS
-
-function arrayLocator($array, $locator, $dictindex = 0, $dictkey = "", $dictvalue = "") {
-	$addr = explode('.', $locator);
-
-	foreach($addr as $i){
-		if(!isset($tmp)){
-	        $tmp = &$array[$i];
-	    } else if (isset($tmp[$i])) {
-	        $tmp = $tmp[$i];
-	    }
-	}
-	//echo gettype($tmp);
-	if (gettype($tmp) == "array") {
-		// check if using key or index
-		if ($dictkey != "") {
-			foreach($tmp as $stream) {
-				if ($stream[$dictkey] == $dictvalue) {
-					$tmp = $stream[$i];
-				}
-			}
-		} else {
-			$tmp = $tmp[$dictindex][$i];
-		}
-	}
-	return $tmp;
-}
+include 'common.php';
 
 // LOGIC
 $configfile = __DIR__ .'/now.json';
@@ -40,6 +15,9 @@ $config = $_GET["c"];
 if ($config == "") {
     $config = $configobj['default']; // default station from file
 }
+$notification = $configobj['notification']; // notification URL for HA
+// TODO: only notif when change (use cache mechanism)
+
 $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
 $configobj = json_decode($configjson, true);
@@ -142,24 +120,50 @@ if ($overrideCover || $nowPictURL == "") {
 }
 // default cover managed by cover.php
 
-if ($mode == "page") {
+if ($mode == "pict") { // pict mode
 
-	$curl = curl_init();
+	header('Content-type: image/jpeg');
+	//echo $picturl;
+	if ($nowPictURL == "") {
+		$image = file_get_contents("notfound.png");
+		header('Content-type: image/png');
+	} else {
+		$image = file_get_contents($nowPictURL);
+	}
 
-	curl_setopt_array($curl, array(
-	  CURLOPT_URL => 'http://rpinet:8123/api/webhook/update-radio-media-jk88hlBW3PeOgtzzDMiCoA-t',
-	  CURLOPT_RETURNTRANSFER => true,
-	  CURLOPT_ENCODING => '',
-	  CURLOPT_MAXREDIRS => 10,
-	  CURLOPT_TIMEOUT => 0,
-	  CURLOPT_FOLLOWLOCATION => true,
-	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	  CURLOPT_CUSTOMREQUEST => 'POST',
-	));
+	header("Content-Length: " . strlen($image));
+	echo $image;
+
+} else if ($mode == "json") { // JSON mode
+
+	$jsonObj = [];
+	$jsonObj["title"] = $nowTitle;
+	$jsonObj["artist"] = $nowArtist;
+	$jsonObj["pict"] = $nowPictURL;
+
+	$json = json_encode($jsonObj);
+
+	header('Content-type: application/json');
+	header("Content-Length: " . strlen($json));
+	echo $json;
 	
-	$response = curl_exec($curl);
-	
-	curl_close($curl);
+} else if ($mode == "page") {
+
+	if ($notification != "") {
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => $notification,
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => '',
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => 'POST',
+		));
+		$response = curl_exec($curl);
+		curl_close($curl);	
+	}
 		
 ?>
 <header>
@@ -188,31 +192,5 @@ if ($mode == "page") {
 </body>
 
 <?php
-} else if ($mode == "pict") { // pict mode
-
-//echo $picturl;
-if ($nowPictURL == "") {
-	$image = file_get_contents("notfound.png");
-} else {
-	$image = file_get_contents($nowPictURL);
-}
-
-header('Content-type: image/jpeg');
-header("Content-Length: " . strlen($image));
-echo $image;
-
-} else if ($mode == "json") { 
-
-	$jsonObj = [];
-	$jsonObj["title"] = $nowTitle;
-	$jsonObj["artist"] = $nowArtist;
-	$jsonObj["pict"] = $nowPictURL;
-
-	$json = json_encode($jsonObj);
-
-	header('Content-type: application/json');
-	header("Content-Length: " . strlen($json));
-	echo $json;
-	
 }
 ?>

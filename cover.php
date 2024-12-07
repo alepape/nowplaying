@@ -7,20 +7,7 @@ error_reporting(E_ERROR);
 session_start();
 
 // FUNCTIONS
-function cmp($a, $b) {
-  $date_a = substr($a["date"], 0, 4);
-  $date_b = substr($b["date"], 0, 4);
-
-  return strcmp($date_a, $date_b);
-}
-
-function endsWith( $haystack, $needle ) {
-  $length = strlen( $needle );
-  if( !$length ) {
-      return true;
-  }
-  return substr( $haystack, -$length ) === $needle;
-}
+include 'common.php';
 
 // LOGIC
 
@@ -41,7 +28,7 @@ if ($force == "") {
   $force = true;
 }
 
-$sessionID = $artist.$track;
+$sessionID = $artist.'+'.$track;
 
 if (($_SESSION['lastrequest'] == $sessionID) && $force == false) {
   // I HAVE CACHE, let's use it
