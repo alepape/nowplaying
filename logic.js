@@ -7,10 +7,11 @@ function displayJson(json) {
     title.innerHTML = json.title;
     
     var artist = document.getElementById("artist");
-    artist.innerHTML = json.artist;
+    artist.innerHTML = "by: " + json.artist;
     
     var cover = document.getElementById("cover");
-    cover.src = json.pict;
+    cover.style.backgroundImage = "url("+json.pict+")";
+    // cover.src = json.pict;
 }
 
 function notifyHA() {

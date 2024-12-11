@@ -93,7 +93,14 @@ body {
         margin-top: 20px;
         font-size: 70%;
     }
-    #artist::before {
+    /* #artist::before {
           content: 'by: ';
-    }
+    } */
+}
+
+.image-styled {
+    background-position: center;
+    background-size: cover;
+    background-image: url("picts/logo.png");
+    transition: background 0.5s;
 }

@@ -4,7 +4,7 @@
 error_reporting(E_ERROR);
 
 // BOOTSTRAP
-include 'bootstrap.php';
+include 'config.php';
 
 ?>
 <header>
@@ -23,12 +23,12 @@ include 'bootstrap.php';
   <div id="now_playing" style="display: block;">
     <div id="coverdiv">
       <!-- add <a href="https://open.spotify.com/search/nowTitle." ".nowArtist" target="_blank"> -->
-      <img src="<?=$nowPictURL?>" id="cover">
+      <img src="" id="cover" class="image-styled">
     </div>
     <div id="infodiv">
 		<div id="infobox">
-	    	<div id="title"><?=$nowTitle?></div>
-    		<div id="artist"><?=$nowArtist?></div>
+	    	<div id="title"></div>
+    		<div id="artist"></div>
 		</div>
 	</div>
   </div>
