@@ -23,7 +23,7 @@ include 'config.php';
   <div id="now_playing" style="display: block;">
     <div id="coverdiv">
       <!-- add <a href="https://open.spotify.com/search/nowTitle." ".nowArtist" target="_blank"> -->
-      <img src="" id="cover" class="image-styled">
+      <img src="picts/1x1.png" id="cover" class="image-styled">
     </div>
     <div id="infodiv">
 		<div id="infobox">
