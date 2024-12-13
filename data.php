@@ -10,6 +10,7 @@ $jsonObj = [];
 $jsonObj["title"] = $nowTitle;
 $jsonObj["artist"] = $nowArtist;
 $jsonObj["pict"] = $nowPictURL;
+$jsonObj["radiologo"] = $configobj['logo'];
 
 $json = json_encode($jsonObj);
 

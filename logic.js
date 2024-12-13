@@ -3,6 +3,13 @@ console.log("js loaded");
 function displayJson(json) {
     //console.log(json);
 
+    if (!json.title && !json.artist) {
+      // null results...
+      title.innerHTML = "";
+      artist.innerHTML = "";
+      cover.style.backgroundImage = "url('picts/logo.png')";
+    }
+
     var title = document.getElementById("title");
     title.innerHTML = json.title;
     
@@ -12,6 +19,9 @@ function displayJson(json) {
     var cover = document.getElementById("cover");
     cover.style.backgroundImage = "url("+json.pict+")";
     // cover.src = json.pict;
+
+    var radiologo = document.getElementById("radiologo");
+    radiologo.src = json.radiologo;
 }
 
 function notifyHA() {

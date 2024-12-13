@@ -18,7 +18,7 @@ include 'config.php';
 <body>
 <div id="container">
   <div id="logo">
-    <img src="<?=$configobj['logo']?>" align="center">
+    <img id="radiologo" src="<?=$configobj['logo']?>" align="center">
   </div>
   <div id="now_playing" style="display: block;">
     <div id="coverdiv">
