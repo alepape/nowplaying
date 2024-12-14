@@ -10,7 +10,6 @@ function arrayLocator($array, $locator, $dictindex = 0, $dictkey = "", $dictvalu
 	        $tmp = $tmp[$i];
 	    }
 	}
-	//echo gettype($tmp);
 	if (gettype($tmp) == "array") {
 		// check if using key or index
 		if ($dictkey != "") {
@@ -29,7 +28,6 @@ function arrayLocator($array, $locator, $dictindex = 0, $dictkey = "", $dictvalu
 function cmp($a, $b) {
     $date_a = substr($a["date"], 0, 4);
     $date_b = substr($b["date"], 0, 4);
-
     return strcmp($date_a, $date_b);
 }
 

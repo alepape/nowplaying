@@ -5,10 +5,11 @@ error_reporting(E_ERROR);
 
 // BOOTSTRAP
 include 'bootstrap.php';
+// bootstrap uses cover.php when nothing is found, which outputs "notfound"
 
-//echo $picturl;
 if ($nowPictURL == "") {
-    $image = file_get_contents("notfound.png");
+    $image = file_get_contents("picts/logo.png"); // TODO: check same logic in cover.php? why here too?
+    // using logo and not "notfound" to detect case (see above)
     header('Content-type: image/png');
 } else {
     $image = file_get_contents($nowPictURL);

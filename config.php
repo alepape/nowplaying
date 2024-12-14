@@ -9,7 +9,8 @@ if ($config == "") {
     $config = $configobj['default']; // default station from file
 }
 $notification = $configobj['notification']; // notification URL for HA
-// TODO: only notif when change (use cache mechanism)
+// only called from JS when change is detected
+// will use notif.php proxy to avoid CORS issues
 
 $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);

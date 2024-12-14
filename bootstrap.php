@@ -10,7 +10,7 @@ include 'config.php';
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => $configobj['nowURL'],
+  CURLOPT_URL => $configobj['nowURL'], // depends on the radio
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -24,7 +24,6 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 curl_close($curl);
 $obj = json_decode($response, true);
-//header('ALP-debug: '.$response);
 
 // result in array
 if (isset($configobj['resultArray'])) {
@@ -90,9 +89,6 @@ if ($nowArtist == "" || !isset($nowArtist)) {
 	$nowArtist = "";
 }
 
-header('ALP-overrideCover: '.$overrideCover);
-header('ALP-nowPictURL: '.$nowPictURL);
-
 if ($overrideCover || $nowPictURL == "") { 
 	// TODO: include album data from radio when available to find better covers...
 	// build full URL to include https despite the redirects
@@ -100,11 +96,10 @@ if ($overrideCover || $nowPictURL == "") {
 	$filename = basename($_SERVER['REQUEST_URI']);
 	$path = str_replace($filename, '', $_SERVER['REQUEST_URI']);
 	$urlbase .= $path;
+	// set the pict url to the cover proxy
 	$nowPictURL = $urlbase."cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
 	header('ALP-cover: '.$nowPictURL);
 }
 // default cover managed by cover.php
-
-// header('ALP-debug: '.json_encode($_SERVER));
 
 ?>
