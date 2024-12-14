@@ -3,6 +3,10 @@
 //ini_set('display_startup_errors', 1);
 error_reporting(E_ERROR);
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
+header("Access-Control-Allow-Headers: X-Requested-With");
+
 // SESSION FOR CACHED COVER
 session_start();
 
