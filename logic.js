@@ -17,7 +17,8 @@ function displayJson(json) {
       title.innerHTML = json.title;    
       artist.innerHTML = "by: " + json.artist;
       cover.style.backgroundImage = "url("+json.pict+")";
-      // cover.src = json.pict;  
+      // cover.src = json.pict;
+      notifyHA();
     }
 
     radiologo.src = json.radiologo;
@@ -50,7 +51,6 @@ function checkJson() {
       } else {
         window.currentJson = JSON.stringify(json);
         displayJson(json);
-        notifyHA();
       }
     }
   });

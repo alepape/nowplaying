@@ -35,8 +35,6 @@ if (isset($configobj['mappings'])) { // normal mapping
 
 	$nowTitle = arrayLocator($obj, $configobj['mappings']['nowTitle']);
 	$nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
-	
-	
 	$nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 	
 } elseif (isset($configobj['icemappings'])) { // icecast mapping
@@ -82,6 +80,14 @@ if (isset($configobj['split'])) {
 		${$key} = $result[0];
 		${$value["target"]} = $result[1];
 	}
+}
+
+// at this stage - title and artist should be known - let's clean them in case the process failed above
+if ($nowTitle == "" || !isset($nowTitle)) {
+	$nowTitle = "";
+}
+if ($nowArtist == "" || !isset($nowArtist)) {
+	$nowArtist = "";
 }
 
 header('ALP-overrideCover: '.$overrideCover);
