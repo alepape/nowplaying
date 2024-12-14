@@ -116,28 +116,39 @@ if (($_SESSION['lastrequest'] == $sessionID) && $force == false) {
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
+      CURLOPT_TIMEOUT => 4, // 4 sec
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
     ));
 
     $response = curl_exec($curl);
-    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    if ($httpCode == 200) {
-      break;
+    $curl_errno = curl_errno($curl);
+    if ($curl_errno > 0) {
+      $response = "";
+      $header['ALP-coverartarchive-error: '.$curl_errno];
+    } else {
+      $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+      if ($httpCode == 200) {
+        curl_close($curl);  
+        break;
+      }
     }
 
     curl_close($curl);  
   }
 
-  $coverapi = json_decode($response, true);
-  $picturl = $coverapi["images"][0]["thumbnails"]["large"]; // TODO: check if front or back
-  $_SESSION['lastcover'] = $picturl;
+  if ($response != "") {
+    $coverapi = json_decode($response, true);
+    $picturl = $coverapi["images"][0]["thumbnails"]["large"]; // TODO: check if front or back
+    $_SESSION['lastcover'] = $picturl;
 
-  $pict_type = "jpeg";
-  if (endsWith($picturl, ".png")) {
-    $pict_type = "png";
+    $pict_type = "jpeg";
+    if (endsWith($picturl, ".png")) {
+      $pict_type = "png";
+    }
+  } else {
+    $picturl = "";
   }
 
   // TODO: could we cache the pict itself? worth it?
