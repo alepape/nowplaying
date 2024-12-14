@@ -89,11 +89,16 @@ header('ALP-nowPictURL: '.$nowPictURL);
 
 if ($overrideCover || $nowPictURL == "") { 
 	// TODO: include album data from radio when available to find better covers...
-	$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
+	// build full URL to include https despite the redirects
+	$urlbase = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
+	$filename = basename($_SERVER['REQUEST_URI']);
+	$path = str_replace($filename, '', $_SERVER['REQUEST_URI']);
+	$urlbase .= $path;
+	$nowPictURL = $urlbase."cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
 	header('ALP-cover: '.$nowPictURL);
 }
 // default cover managed by cover.php
 
-header('ALP-debug: '.json_encode($_SERVER));
+// header('ALP-debug: '.json_encode($_SERVER));
 
 ?>
