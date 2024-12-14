@@ -96,7 +96,7 @@ if ($overrideCover || $nowPictURL == "") {
 	// TODO: include album data from radio when available to find better covers...
 
 	// build full URL to include https despite the redirects
-	$urlbase = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
+	$urlbase = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'];
 	$filename = basename($_SERVER['REQUEST_URI']);
 	$path = str_replace($filename, '', $_SERVER['REQUEST_URI']);
 	$urlbase .= $path;
