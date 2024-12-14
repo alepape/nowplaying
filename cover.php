@@ -179,6 +179,7 @@ if ($sessionID != "+") {
 }
 
 if ($picturl == "") {
+  $_SESSION['lastcover'] = "picts/notfound.png";
   header('Content-type: image/png');
   $image = file_get_contents("picts/notfound.png");
 } else {
