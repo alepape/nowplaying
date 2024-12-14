@@ -107,13 +107,14 @@ if ($overrideCover || $nowPictURL == "") {
 	$urlbase .= $path;
 
 	// check I have something to search for...
-	if (($nowArtist == "") || ($nowTitle == "")) {
+	// if (($nowArtist == "") || ($nowTitle == "")) {
 		// ok - send back notfound
-		$nowPictURL = $urlbase."picts/notfound.png"; // no need to go through the motions w/ cover.php
-	} else {
+		// $nowPictURL = $urlbase."picts/notfound.png"; // no need to go through the motions w/ cover.php
+		// NOTE: this fails CORS for some reason - let have a check in cover.php instead
+	//} else {
 		// set the pict url to the cover proxy
 		$nowPictURL = $urlbase."cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
-	}
+	//}
 
 	header('ALP-cover: '.$nowPictURL);
 }
