@@ -82,24 +82,35 @@ if (isset($configobj['split'])) {
 }
 
 // at this stage - title and artist should be known - let's clean them in case the process failed above
-if ($nowTitle == "" || !isset($nowTitle)) {
+if (($nowTitle == "") || !isset($nowTitle)) {
 	$nowTitle = "";
 }
-if ($nowArtist == "" || !isset($nowArtist)) {
+if (($nowArtist == "") || !isset($nowArtist)) {
 	$nowArtist = "";
 }
 
+// default cover managed by cover.php
+// except if artist & track missing - then manual here...
+
 if ($overrideCover || $nowPictURL == "") { 
 	// TODO: include album data from radio when available to find better covers...
+
 	// build full URL to include https despite the redirects
 	$urlbase = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
 	$filename = basename($_SERVER['REQUEST_URI']);
 	$path = str_replace($filename, '', $_SERVER['REQUEST_URI']);
 	$urlbase .= $path;
-	// set the pict url to the cover proxy
-	$nowPictURL = $urlbase."cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
+
+	// check I have something to search for...
+	if (($nowArtist == "") || ($nowTitle == "")) {
+		// ok - send back notfound
+		$nowPictURL = $urlbase."picts/notfound.png"; // no need to go through the motions w/ cover.php
+	} else {
+		// set the pict url to the cover proxy
+		$nowPictURL = $urlbase."cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
+	}
+
 	header('ALP-cover: '.$nowPictURL);
 }
-// default cover managed by cover.php
 
 ?>
