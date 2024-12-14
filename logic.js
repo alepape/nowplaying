@@ -3,24 +3,23 @@ console.log("js loaded");
 function displayJson(json) {
     //console.log(json);
 
+    var title = document.getElementById("title");
+    var artist = document.getElementById("artist");
+    var cover = document.getElementById("cover");
+    var radiologo = document.getElementById("radiologo");
+
     if (!json.title && !json.artist) {
       // null results...
       title.innerHTML = "";
       artist.innerHTML = "";
       cover.style.backgroundImage = "url('picts/logo.png')";
+    } else {
+      title.innerHTML = json.title;    
+      artist.innerHTML = "by: " + json.artist;
+      cover.style.backgroundImage = "url("+json.pict+")";
+      // cover.src = json.pict;  
     }
 
-    var title = document.getElementById("title");
-    title.innerHTML = json.title;
-    
-    var artist = document.getElementById("artist");
-    artist.innerHTML = "by: " + json.artist;
-    
-    var cover = document.getElementById("cover");
-    cover.style.backgroundImage = "url("+json.pict+")";
-    // cover.src = json.pict;
-
-    var radiologo = document.getElementById("radiologo");
     radiologo.src = json.radiologo;
 }
 
