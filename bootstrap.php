@@ -26,6 +26,12 @@ curl_close($curl);
 $obj = json_decode($response, true);
 //header('ALP-debug: '.$response);
 
+header('ALP-PHP_SELF :'.$_SERVER['PHP_SELF']);
+header('ALP-SERVER_NAME :'.$_SERVER['SERVER_NAME']);
+header('ALP-REQUEST_URI :'.$_SERVER['REQUEST_URI']);
+header('ALP-HTTPS :'.$_SERVER['HTTPS']);
+header('ALP-WEB_ROOT :'.str_replace($_SERVER['SCRIPT_NAME'],'',$_SERVER['SCRIPT_FILENAME']));
+
 	
 // result in array
 if (isset($configobj['resultArray'])) {
@@ -90,7 +96,7 @@ header('ALP-nowPictURL: '.$nowPictURL);
 
 if ($overrideCover || $nowPictURL == "") { 
 	// TODO: include album data from radio when available to find better covers...
-	$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist);
+	$nowPictURL = "cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
 	header('ALP-cover: '.$nowPictURL);
 }
 // default cover managed by cover.php
