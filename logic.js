@@ -9,10 +9,11 @@ function displayJson(json) {
     var radiologo = document.getElementById("radiologo");
 
     if (!json.title && !json.artist) {
-      // null results...
-      title.innerHTML = "";
-      artist.innerHTML = "";
-      cover.style.backgroundImage = "url('picts/logo.png')";
+      // null results... do nothing... OR reset???
+      // title.innerHTML = "";
+      // artist.innerHTML = "";
+      // cover.style.backgroundImage = "url('picts/logo.png')";
+      console.log("got empty payload - check logs!");
     } else {
       title.innerHTML = json.title;    
       artist.innerHTML = "by: " + json.artist;
