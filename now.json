@@ -1,4 +1,5 @@
 {
     "default": "classic",
-    "notification": "http:\/\/rpinet:8123\/api\/webhook\/update-radio-media-jk88hlBW3PeOgtzzDMiCoA-t"
+    "notification": "http:\/\/rpinet:8123\/api\/webhook\/update-radio-media-jk88hlBW3PeOgtzzDMiCoA-t",
+    "force_ext_path": "http://localhost"
 }

@@ -6,7 +6,7 @@ error_reporting(E_ERROR);
 // BOOTSTRAP
 include 'bootstrap.php';
 
-header("ALP-debug: ".json_encode($_SERVER));
+// header("ALP-debug: ".json_encode($_SERVER));
 
 $jsonObj = [];
 $jsonObj["title"] = $nowTitle;

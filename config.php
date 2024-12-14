@@ -11,6 +11,7 @@ if ($config == "") {
 $notification = $configobj['notification']; // notification URL for HA
 // only called from JS when change is detected
 // will use notif.php proxy to avoid CORS issues
+$force_ext_path = $configobj['force_ext_path']; // if set, will be used to build cover.php URL
 
 $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);

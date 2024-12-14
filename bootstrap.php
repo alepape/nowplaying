@@ -95,8 +95,13 @@ if (($nowArtist == "") || !isset($nowArtist)) {
 if ($overrideCover || $nowPictURL == "") { 
 	// TODO: include album data from radio when available to find better covers...
 
-	// build full URL to include https despite the redirects
-	$urlbase = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'];
+	// check if config has a external URL override (useful when reverse proxy)
+	if ($force_ext_path != "") {
+		$urlbase = $force_ext_path;
+	} else {
+		// ok, nothing, we try & build full URL to include https despite the redirects
+		$urlbase = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'];
+	}
 	$filename = basename($_SERVER['REQUEST_URI']);
 	$path = str_replace($filename, '', $_SERVER['REQUEST_URI']);
 	$urlbase .= $path;
