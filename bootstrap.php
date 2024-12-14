@@ -26,13 +26,6 @@ curl_close($curl);
 $obj = json_decode($response, true);
 //header('ALP-debug: '.$response);
 
-// header('ALP-PHP_SELF :'.$_SERVER['PHP_SELF']);
-// header('ALP-SERVER_NAME :'.$_SERVER['SERVER_NAME']);
-// header('ALP-REQUEST_URI :'.$_SERVER['REQUEST_URI']);
-// header('ALP-HTTPS :'.$_SERVER['HTTPS']);
-// header('ALP-SCRIPT_NAME :'.$_SERVER['SCRIPT_NAME']);
-// header('ALP-SCRIPT_FILENAME :'.$_SERVER['SCRIPT_FILENAME']);
-	
 // result in array
 if (isset($configobj['resultArray'])) {
 	$obj = $obj[$configobj['resultArray']][0];
@@ -101,5 +94,6 @@ if ($overrideCover || $nowPictURL == "") {
 }
 // default cover managed by cover.php
 
+header('ALP-debug: '.json_encode($_SERVER));
 
 ?>
