@@ -2,12 +2,13 @@
     "name": "TSF",
     "country": "FR",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/TSFJazz-2017.jpg/800px-TSFJazz-2017.jpg",
-    "nowURL": "https://api.tsfjazz.com/api/tracklists/current/TSF?radio=TSF",
+    "nowURL": "https://www.tsfjazz.com/player/qect",
     "mappings": {
-        "nowTitle": "title",
-        "nowArtist": "artist",
-        "nowPictURL": "thumbnail_medium"
+        "nowTitle": "current.title",
+        "nowArtist": "current.artist",
+        "nowPictURL": "current.cover"
     },
+    "overrideVerb": "POST",
     "overrideCover": true,
     "fixCase": true
 }

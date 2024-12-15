@@ -7,6 +7,12 @@ error_reporting(E_ERROR);
 include 'common.php';
 include 'config.php';
 
+// overrideVerb
+$method = "GET";
+if (isset($configobj['overrideVerb'])) {
+	$method = $configobj['overrideVerb'];
+}
+
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -17,9 +23,12 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 0,
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_CUSTOMREQUEST => $method,
   CURLOPT_USERAGENT => 'Home Assistant Now Playing/0.1 (https://github.com/alepape/nowplaying)'
 ));
+
+// TODO: deal with empty responses (ex: cache last one) - HA sensor tends to refresh too often
+// and I get throttled (at least on classic)
 
 $response = curl_exec($curl);
 curl_close($curl);
@@ -107,14 +116,12 @@ if ($overrideCover || $nowPictURL == "") {
 	$urlbase .= $path;
 
 	// check I have something to search for...
-	// if (($nowArtist == "") || ($nowTitle == "")) {
-		// ok - send back notfound
+	if (($nowArtist == "") || ($nowTitle == "")) {
+		header("ALP-debug: ".$respons); // tell why it was empty
 		// $nowPictURL = $urlbase."picts/notfound.png"; // no need to go through the motions w/ cover.php
 		// NOTE: this fails CORS for some reason - let have a check in cover.php instead
-	//} else {
-		// set the pict url to the cover proxy
-		$nowPictURL = $urlbase."cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
-	//}
+	}
+	$nowPictURL = $urlbase."cover.php?t=".urlencode($nowTitle)."&a=".urlencode($nowArtist); // TODO: add hostname from PHP context
 
 	header('ALP-cover: '.$nowPictURL);
 }
