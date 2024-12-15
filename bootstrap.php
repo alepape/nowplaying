@@ -50,9 +50,10 @@ if (isset($configobj['mappings'])) { // normal mapping
 	// at this stage, the title has both the title and artist - the clean up will be done in another step
 
 } else { // nothing?
-	$nowTitle = "no valid configuration found";
-	$nowArtist = "error";
+	$nowTitle = "";
+	$nowArtist = ""; // keep empty for next step
 	$nowPictURL = "notfound.png";
+	header("ALP-error: no valid configuration found");
 }
 
 // overrideCover
@@ -98,9 +99,30 @@ if (($nowArtist == "") || !isset($nowArtist)) {
 	$nowArtist = "";
 }
 
+// cache the latest good response
+$cache_file = __DIR__ .'/cache/last.json';
+// one validation option - we should have nowArtist now... 
+// TODO: find a better one based on curl response - but might need a error detection per radio...
+if (($nowArtist != "") && ($nowTitle != "")) {
+	// save last payload to file
+	$jsonObj = [];
+	$jsonObj["title"] = $nowTitle;
+	$jsonObj["artist"] = $nowArtist;
+
+	// caching the pict as we most certainly have one here...
+	$cache_data = json_encode($jsonObj);
+	file_put_contents($cache_file, $cache_data); 
+
+} else {
+	// read last good payload
+	$cache_data = file_get_contents($cache_file);
+	$jsonObj = json_decode($cache_data);
+	$nowTitle = $jsonObj["title"];
+	$nowArtist = $jsonObj["artist"];
+}
+
 // default cover managed by cover.php
 // except if artist & track missing - then manual here...
-
 if ($overrideCover || $nowPictURL == "") { 
 	// TODO: include album data from radio when available to find better covers...
 

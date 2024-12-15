@@ -10,5 +10,6 @@
     },
     "overrideVerb": "POST",
     "overrideCover": true,
-    "fixCase": true
+    "fixCase": true,
+    "comment": "overrideCover might not be needed... just loads of error on new website"
 }
