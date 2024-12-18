@@ -17,13 +17,13 @@ if ($config == "") {
     }
 }
 
-$configfile = __DIR__ .'/now.json';
-$configjson = file_get_contents($configfile); // reading first
-$configobj = json_decode($configjson, true);
+$mainconfigfile = __DIR__ .'/now.json';
+$mainconfigjson = file_get_contents($cmainonfigfile); // reading first
+$mainconfigobj = json_decode($mainconfigjson, true);
 
-$configobj["default"] = $config;
+$mainconfigobj["default"] = $config;
 
-file_put_contents($configfile, json_encode($configobj, JSON_PRETTY_PRINT)); 
+file_put_contents($mainconfigfile, json_encode($mainconfigobj, JSON_PRETTY_PRINT)); 
 // TODO: have a permission check for config json...
 
 ?>
