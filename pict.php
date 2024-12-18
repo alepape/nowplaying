@@ -10,6 +10,8 @@ include 'bootstrap.php';
 if ($nowPictURL == "") {
     $image = file_get_contents("picts/logo.png"); // TODO: check same logic in cover.php? why here too?
     // using logo and not "notfound" to detect case (see above)
+    // TODO: use radio logo instead
+    // TODO: check if/when this is used at all now that I removed it from the HA script
     header('Content-type: image/png');
 } else {
     $image = file_get_contents($nowPictURL);

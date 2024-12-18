@@ -5,6 +5,7 @@ error_reporting(E_ERROR);
 
 // BOOTSTRAP
 include 'bootstrap.php';
+// TODO: include cache + fail-over logic in here rather than in bootstrap?
 
 // header("ALP-debug: ".json_encode($_SERVER));
 
