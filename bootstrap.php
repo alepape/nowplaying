@@ -114,11 +114,14 @@ if (($nowArtist != "") && ($nowTitle != "")) {
 	file_put_contents($cache_file, $cache_data); 
 
 } else {
+	error_log("NOWPLAYING: empty data - reading from cache...");
+
 	// read last good payload
 	$cache_data = file_get_contents($cache_file);
 	$jsonObj = json_decode($cache_data);
 	$nowTitle = $jsonObj["title"];
 	$nowArtist = $jsonObj["artist"];
+	error_log("NOWPLAYING: cache content = ".$cache_data);
 }
 
 // default cover managed by cover.php
