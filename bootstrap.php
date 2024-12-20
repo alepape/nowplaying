@@ -118,7 +118,7 @@ if (($nowArtist != "") && ($nowTitle != "")) {
 
 	// read last good payload
 	$cache_data = file_get_contents($cache_file);
-	$jsonObj = json_decode($cache_data);
+	$jsonObj = json_decode($cache_data, true);
 	$nowTitle = $jsonObj["title"];
 	$nowArtist = $jsonObj["artist"];
 	error_log("NOWPLAYING: cache content = ".$cache_data);
