@@ -18,7 +18,7 @@ if ($config == "") {
 }
 
 $mainconfigfile = __DIR__ .'/now.json';
-$mainconfigjson = file_get_contents($cmainonfigfile); // reading first
+$mainconfigjson = file_get_contents($mainconfigfile); // reading first
 $mainconfigobj = json_decode($mainconfigjson, true);
 
 $mainconfigobj["default"] = $config;

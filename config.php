@@ -5,7 +5,10 @@ $mainconfigjson = file_get_contents($mainconfigfile);
 $mainconfigobj = json_decode($mainconfigjson, true);
 // TODO: cache in session?
 
-$config = $_GET["c"];
+$config = "";
+if (isset($_GET["c"])) {
+    $config = $_GET["c"];
+}
 if ($config == "") {
     $config = $mainconfigobj['default']; // default station from file
 }
