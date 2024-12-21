@@ -31,6 +31,10 @@ curl_setopt_array($curl, array(
 // and I get throttled (at least on classic)
 
 $response = curl_exec($curl);
+$curl_errno = curl_errno($curl);
+if ($curl_errno > 0) {
+	error_log("NOWPLAYING: error fetching stream info = ".curl_error($curl));
+}
 curl_close($curl);
 $obj = json_decode($response, true);
 
