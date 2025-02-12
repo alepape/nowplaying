@@ -88,6 +88,7 @@ body {
     #title {
         margin-top: 0px;
         color: white;
+        overflow-x: clip;
     }
     #artist {
         margin-top: 20px;
@@ -133,6 +134,7 @@ body {
     #title {
         margin-top: 0px;
         color: white;
+        overflow-x: clip;
     }
     #artist {
         margin-top: 20px;
