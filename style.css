@@ -98,6 +98,51 @@ body {
     } */
 }
 
+@media screen and (width: 1024px) and (height: 768px) { /* old ipad - full screen */
+    body {
+        margin: 0px;
+    }
+    #container {
+        margin: 0px;
+        text-align: right;
+        position: relative;
+    }
+    #now_playing {
+        margin-top: 0px;
+    }
+    #cover {
+        height: 653px;
+        max-height: 653px;
+        max-width: 653px;
+    }
+    #coverdiv {
+        float: left;
+    }
+    #infodiv {
+        float: left;
+        display: flex;
+        height: 653px;
+    }
+    #infobox {
+        margin: auto;
+        text-align: left;
+        padding-left: 30px;
+        font-size: 60px;
+        width: 330px;
+    }
+    #title {
+        margin-top: 0px;
+        color: white;
+    }
+    #artist {
+        margin-top: 20px;
+        font-size: 70%;
+    }
+    /* #artist::before {
+          content: 'by: ';
+    } */
+}
+
 .image-styled {
     background-position: center;
     background-size: cover;
