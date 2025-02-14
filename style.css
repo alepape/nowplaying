@@ -99,7 +99,8 @@ body {
     } */
 }
 
-@media screen and (width: 1024px) and (height: 768px) { /* old ipad - full screen */
+@media screen and (width: 1024px) and (height: 768px), 
+screen and (width: 2048px) and (height: 1536px) { /* old ipad - full screen */
     body {
         margin: 0px;
     }
