@@ -1,7 +1,7 @@
 {
     "name": "Le Bon Mix",
     "country": "FR",
-    "logo": "picts/lebonmix.png",
+    "logo": "https://home.alepape.com:17443/pve/nowplaying/picts/lebonmix.png",
     "nowURL": "https://manager.radiosolution.fr/data/titrage/lebonmix-radio.json",
     "mappings": {
         "nowTitle": "result.title",

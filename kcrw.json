@@ -1,7 +1,7 @@
 {
     "name": "KCRW",
     "country": "US",
-    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/83/KCRW_89.9FM_logo.svg/1034px-KCRW_89.9FM_logo.svg.png",
+    "logo": "https://www.kcrw.com/music/shows/freeform/@@images/square_image/listing-square",
     "nowURL": "https://tracklist-api.kcrw.com/Music",
     "mappings": {
         "nowTitle": "title",
