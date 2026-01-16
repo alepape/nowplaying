@@ -14,7 +14,7 @@ if ($nowPictURL == "") {
     // TODO: check if/when this is used at all now that I removed it from the HA script
     header('Content-type: image/png');
 } else {
-    $image = file_get_contents($nowPictURL);
+    $image = file_get_contents($nowPictURL); // TODO: use a cache?, like when I override...
     header('Content-type: image/jpeg');
 }
 
