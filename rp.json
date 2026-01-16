@@ -10,11 +10,11 @@
     },
     "prepend": {
         "nowPictURL": {
-            "pre": "https://img.radioparadise.com/"
+            "pre": "https://pve-web.alepape.com/nowplaying/pict_proxy.php?p=https://img.radioparadise.com/"
         }
     },
     "resultArray": "song",
     "overrideCover": false,
     "fixCase": false,
-    "comment": "chan=0 is the main mix - TBC"
+    "comment": "chan=0 is the main mix - TBC - note: pict_proxy only works for jpg for now..."
 }
