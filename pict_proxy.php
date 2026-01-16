@@ -10,7 +10,7 @@ if (isset($_GET["p"])) {
 }
 
 $image = file_get_contents($url); // TODO: use a cache?, like when I override...
-header('Content-type: image/*');
+header('Content-type: image/jpeg');
 header("Content-Length: " . strlen($image));
 echo $image;
 
