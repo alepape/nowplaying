@@ -84,6 +84,14 @@ if (isset($configobj['transform'])) {
 	}
 }
 
+// check for string append
+if (isset($configobj['append'])) {
+	foreach ($configobj['append'] as $key => $value) {
+		//echo $key." from ".$value['from']." to ".$value['to'];
+		${$key} = ${$key} . $value['post'];
+	}
+}
+
 // check for string prepend
 if (isset($configobj['prepend'])) {
 	foreach ($configobj['prepend'] as $key => $value) {

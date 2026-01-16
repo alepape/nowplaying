@@ -2,11 +2,16 @@
     "name": "FIP",
     "country": "FR",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/FIP_logo_2021.svg/500px-FIP_logo_2021.svg.png",
-    "nowURL": "https://api.radiofrance.fr/livemeta/live/7/webrf_fip_player?preset=800x800",
+    "nowURL": "https://www.radiofrance.fr/fip/api/live",
     "mappings": {
-        "nowTitle": "now.firstLine",
-        "nowArtist": "now.secondLine",
-        "nowPictURL": "now.cover"
+        "nowTitle": "now.firstLine.title",
+        "nowArtist": "now.secondLine.title",
+        "nowPictURL": "now.visuals.player.src"
+    },
+    "append": {
+        "nowPictURL": {
+            "post": "/800x800"
+        }
     },
     "overrideCover": false,
     "fixCase": false
