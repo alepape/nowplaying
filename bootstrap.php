@@ -84,6 +84,14 @@ if (isset($configobj['transform'])) {
 	}
 }
 
+// check for string prepend
+if (isset($configobj['prepend'])) {
+	foreach ($configobj['prepend'] as $key => $value) {
+		//echo $key." from ".$value['from']." to ".$value['to'];
+		${$key} = $value['pre'] . ${$key};
+	}
+}
+
 // check for string splits
 if (isset($configobj['split'])) {
 	foreach ($configobj['split'] as $key => $value) {
