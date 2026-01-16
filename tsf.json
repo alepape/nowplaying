@@ -9,7 +9,7 @@
         "nowPictURL": "current.cover"
     },
     "overrideVerb": "POST",
-    "overrideCover": true,
+    "overrideCover": false,
     "fixCase": true,
     "comment": "overrideCover might not be needed... just loads of error on new website"
 }
