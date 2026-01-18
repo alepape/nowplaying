@@ -1,6 +1,6 @@
 {
     "name": "Off",
-    "logo": "picts/logo.png",
+    "logo": "https://home.alepape.com:17443/pve/nowplaying/picts/logo.png",
     "nowURL": "https://home.alepape.com:17443/pve/nowplaying/off_data.json",
     "mappings": {
         "nowTitle": "title",
