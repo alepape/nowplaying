@@ -19,9 +19,9 @@ $jsonObj["radiocode"] = $config;
 
 $json = json_encode($jsonObj);
 
+// header("ALP-debug: loaded config = ".$configjson);
 header('Content-type: application/json');
 header("Content-Length: " . strlen($json));
-header("ALP-debug: loaded config = ".$configjson);
 echo $json;
 	
 ?>

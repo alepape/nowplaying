@@ -1,7 +1,7 @@
 {
     "name": "Off",
     "logo": "picts/logo.png",
-    "nowURL": "off_data.json",
+    "nowURL": "./off_data.json",
     "mappings": {
         "nowTitle": "title",
         "nowArtist": "artist",
