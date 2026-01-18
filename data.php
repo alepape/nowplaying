@@ -21,6 +21,7 @@ $json = json_encode($jsonObj);
 
 header('Content-type: application/json');
 header("Content-Length: " . strlen($json));
+header("ALP-debug: loaded config = ".$configjson);
 echo $json;
 	
 ?>

@@ -26,7 +26,6 @@ if (isset($mainconfigobj['force_ext_path'])) {
 
 $configfile = __DIR__ .'/'.$config.'.json';
 $configjson = file_get_contents($configfile);
-header("ALP-debug: loaded config = ".$configjson);
 $configobj = json_decode($configjson, true);
 // TODO: cache in session?
 
