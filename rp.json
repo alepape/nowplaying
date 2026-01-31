@@ -10,7 +10,7 @@
     },
     "prepend": {
         "nowPictURL": {
-            "pre": "https://pve-web.alepape.com/nowplaying/pict_proxy.php?p=https://img.radioparadise.com/"
+            "pre": "https://home.alepape.com:17443/pve/nowplaying/pict_proxy.php?p=https://img.radioparadise.com/"
         }
     },
     "resultArray": "song",
