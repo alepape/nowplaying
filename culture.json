@@ -1,0 +1,18 @@
+{
+    "name": "France Culture",
+    "country": "FR",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/FIP_logo_2021.svg/500px-FIP_logo_2021.svg.png",
+    "nowURL": "https://www.radiofrance.fr/franceculture/api/live",
+    "mappings": {
+        "nowTitle": "now.firstLine.title",
+        "nowArtist": "now.secondLine.title",
+        "nowPictURL": "now.visuals.player.src"
+    },
+    "append": {
+        "nowPictURL": {
+            "post": "/800x800"
+        }
+    },
+    "overrideCover": false,
+    "fixCase": false
+}
