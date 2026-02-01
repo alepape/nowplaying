@@ -1,7 +1,7 @@
 {
     "name": "Radio Neptune",
     "country": "FR",
-    "logo": "http://www.radio-neptune.net/favicon.ico",
+    "logo": "https://images.radio.co/station_logos/s95a7b8d22.20211217100039.png",
     "nowURL": "https://public.radio.co/stations/s95a7b8d22/status",
     "mappings": {
         "nowTitle": "current_track.title",
