@@ -10,7 +10,7 @@
     },
     "split": {
         "nowTitle":{
-            "after": "  By: ",
+            "after": " by ",
             "target": "nowArtist"
         }
     },
