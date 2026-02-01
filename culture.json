@@ -1,7 +1,7 @@
 {
     "name": "France Culture",
     "country": "FR",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/FIP_logo_2021.svg/500px-FIP_logo_2021.svg.png",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/France_Culture_logo_2021.svg/500px-France_Culture_logo_2021.svg.png",
     "nowURL": "https://www.radiofrance.fr/franceculture/api/live",
     "mappings": {
         "nowTitle": "now.firstLine.title",
