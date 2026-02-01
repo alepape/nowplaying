@@ -16,6 +16,7 @@ $jsonObj["pict"] = $nowPictURL;
 $jsonObj["radiologo"] = $configobj['logo'];
 $jsonObj["radioname"] = $configobj['name'];
 $jsonObj["radiocode"] = $config;
+$jsonObj["error"] = $json_error;
 
 $json = json_encode($jsonObj);
 

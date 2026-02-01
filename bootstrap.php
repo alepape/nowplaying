@@ -30,6 +30,8 @@ curl_setopt_array($curl, array(
 // TODO: deal with empty responses (ex: cache last one) - HA sensor tends to refresh too often
 // and I get throttled (at least on classic)
 
+$json_error = "";
+
 $response = curl_exec($curl);
 $curl_errno = curl_errno($curl);
 if ($curl_errno > 0) {
@@ -135,6 +137,7 @@ if (($nowArtist != "") && ($nowTitle != "")) {
 
 } else {
 	error_log("NOWPLAYING: empty data - reading from cache...");
+	$json_error = "NOWPLAYING: empty data - reading from cache...";
 
 	// read last good payload
 	$cache_data = file_get_contents($cache_file);
