@@ -51,9 +51,20 @@ if (isset($configobj['mappings'])) { // normal mapping
 	$nowArtist = arrayLocator($obj, $configobj['mappings']['nowArtist']);
 	$nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 	
-} elseif (isset($configobj['icemappings'])) { // icecast mapping
-	$nowTitle = arrayLocator($obj, $configobj['icemappings']['now'], null, $configobj['icemappings']['key'], $configobj['icemappings']['value']);
-	// at this stage, the title has both the title and artist - the clean up will be done in another step
+} elseif (isset($configobj['icemappings'])) { // icecast mappings - now w/ multiple attributes
+	// find the right object in array based on the key/value pair
+	$mapping_found = arrayLocator($obj, $configobj['icemappings']['search_scope'], null, $configobj['icemappings']['search_key'], $configobj['icemappings']['search_value']);
+
+	foreach ($configobj['icemappings']['attribute_mappings'] as $attribute_mapping) {
+		if ($attribute_mapping['key'] == 'nowTitle') {
+			$nowTitle = arrayLocator($mapping_found, $attribute_mapping['value']);
+		} elseif ($attribute_mapping['key'] == 'nowArtist') {
+			$nowArtist = arrayLocator($mapping_found, $attribute_mapping['value']);
+		} elseif ($attribute_mapping['key'] == 'nowPictURL') {
+			$nowPictURL = arrayLocator($mapping_found, $attribute_mapping['value']);
+		}
+	}
+	// at this stage, the title might have both the title and artist - the clean up will be done in another step
 
 } else { // nothing?
 	$nowTitle = "";

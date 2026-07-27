@@ -4,9 +4,15 @@
     "logo": "https://icecast.walmradio.com:8443/classic.jpg",
     "nowURL": "https://icecast.walmradio.com:8443/status-json.xsl",
     "icemappings": {
-        "now": "icestats.source.title",
-        "key": "server_name",
-        "value": "Classic Vinyl HD"
+        "search_scope": "iceast.source",
+        "search_key": "server_name",
+        "search_value": "Classic Vinyl HD",
+        "attribute_mappings": [
+            {
+                "key": "nowTitle",
+                "value": "title"
+            }
+        ]
     },
     "split": {
         "nowTitle":{
