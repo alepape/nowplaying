@@ -52,10 +52,9 @@ if (isset($configobj['mappings'])) { // normal mapping
 	$nowPictURL = arrayLocator($obj, $configobj['mappings']['nowPictURL']);
 	
 } elseif (isset($configobj['icemappings'])) { // icecast mappings - now w/ multiple attributes
+
 	// find the right object in array based on the key/value pair
-//	$mapping_found = arrayLocator($obj, $configobj['icemappings']['search_scope'], null, $configobj['icemappings']['search_key'], $configobj['icemappings']['search_value']);
-	$mapping_found = arrayLocator($obj, null, null, $configobj['icemappings']['search_key'], $configobj['icemappings']['search_value']);
-	header("ALP-debug: mapping_found = ".json_encode($mapping_found));
+	$mapping_found = arrayLocator($obj, $configobj['icemappings']['search_scope'], -1, $configobj['icemappings']['search_key'], $configobj['icemappings']['search_value'], true);
 
 	foreach ($configobj['icemappings']['attribute_mappings'] as $attribute_mapping) {
 		if ($attribute_mapping['key'] == 'nowTitle') {

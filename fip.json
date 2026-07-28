@@ -2,7 +2,7 @@
     "name": "FIP",
     "country": "FR",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/FIP_logo_2021.svg/500px-FIP_logo_2021.svg.png",
-    "nowURL": "https://www.radiofrance.fr/fip/api/live",
+    "nowURL": "https://radio-metadata.fr/apiserver/webradios",
     "icemappings": {
         "search_scope": "",
         "search_key": "id",

@@ -1,27 +1,48 @@
 <?php
 
-function arrayLocator($array, $locator, $dictindex = 0, $dictkey = "", $dictvalue = "") {
-	$addr = explode('.', $locator);
+function arrayLocator($array, $locator, $dictindex = 0, $dictkey = "", $dictvalue = "", $parent = FALSE) {
+	$last_segment = "";
+	$tmp = $array;
 
-	foreach($addr as $i){
-		if(!isset($tmp)){
-	        $tmp = &$array[$i];
-	    } else if (isset($tmp[$i])) {
-	        $tmp = $tmp[$i];
-	    }
+	if ($locator !== "") {
+		$addr = explode('.', $locator);
+
+		foreach ($addr as $segment) {
+			$last_segment = $segment;
+			if (!isset($tmp[$segment])) {
+				return null;
+			}
+			$tmp = $tmp[$segment];
+		}
 	}
-	if (gettype($tmp) == "array") {
-		// check if using key or index
+
+	if (is_array($tmp)) {
 		if ($dictkey != "") {
-			foreach($tmp as $stream) {
-				if ($stream[$dictkey] == $dictvalue) {
-					$tmp = $stream[$i];
+			foreach ($tmp as $stream) {
+				if (!is_array($stream)) {
+					continue;
+				}
+				if (isset($stream[$dictkey]) && $stream[$dictkey] == $dictvalue) {
+					if ($parent) {
+						return $stream;
+					}
+					if ($last_segment !== "" && isset($stream[$last_segment])) {
+						return $stream[$last_segment];
+					}
+					return $stream;
 				}
 			}
 		} else {
-			$tmp = $tmp[$dictindex][$i];
+			if (isset($tmp[$dictindex])) {
+				$entry = $tmp[$dictindex];
+				if ($last_segment !== "" && is_array($entry) && isset($entry[$last_segment])) {
+					return $entry[$last_segment];
+				}
+				return $entry;
+			}
 		}
 	}
+
 	return $tmp;
 }
 
